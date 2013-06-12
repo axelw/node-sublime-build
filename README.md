@@ -18,7 +18,6 @@ Hotkeys are enabled via ST2's key bindings:
 ## Known caveats & issues
 
 - this build system assumes that the file called by node goes by the name of `app.js`
-- it works on my machine running MacOS 10.7.5. It may work elsewhere, but nobody knows.
-- maybe more :)
+- it works on my machine running MacOS 10.7.5. It may or may not work elsewhere.
 
 
