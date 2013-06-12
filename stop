@@ -1,0 +1,70 @@
+#! /opt/local/bin/bash
+
+didStop=0
+
+# check if file pid.node exists. That may signal that node is running
+if [[ -e "$1/pid.node" ]]; then 
+	# get the node process's pid persisted in the file
+	oldPid=$(cat "$1/pid.node")
+	#echo "oldPid : $oldPid"
+
+	# check if a process is currently running with this pid
+	# Note: after using this script many many times, suddenly a blank appeared at the beginning of the 
+	# output of the ps ... command, don't know why. Trimming is now done by the regex 
+	curProc=$(ps axo pid,command|grep "$oldPid"|grep -v grep|sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+	#echo "curProc: $curProc"
+
+	# check if this process is attached to an executable named 'node'
+	module=$(echo $curProc|grep node)
+	#echo "module : $module"
+
+	# check if the executable works with a file called 'main.js'
+	modArg=$(echo $module|grep $ENTRY_FILE)
+	#echo "modArg : $modArg"
+
+	# if the three grep yield identical results, assume that it is safe 
+	# to stop the process identified by the pid in node.pid file.
+	if [[ "$curProc" = "$module" ]] && [[ "$module" = "$modArg" ]]; then
+		echo "stopping: $curProc"
+		kill -s SIGTERM $oldPid
+		didStop=1
+	else
+		echo "deleting stale pid.node; no process stopped"
+	fi
+	rm "$1/pid.node"
+fi
+
+if [[ -e "$1/pid.inspector" ]]; then 
+
+	# get the node process's pid persisted in the file
+	oldPid=$(cat "$1/pid.inspector")
+	#echo "oldPid insp : $oldPid"
+
+	# check if a process is currently running with this pid
+	curProc=$(ps axo pid,command|grep $oldPid|grep -v grep|sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+	#echo "curProc insp: $curProc"
+	
+	# check if this process is attached to an executable named 'node'
+	module=$(echo $curProc|grep node-inspector)
+	#echo "module insp : $module"
+	
+	# if the two grep yield identical results, assume that it is safe 
+	# to stop the process identified by the pid in node.pid file.
+	if [[ "$curProc" = "$module" ]] ; then
+		echo "stopping: $curProc"
+		kill -s SIGTERM $oldPid
+		didStop=2
+	else
+		echo "deleting stale pid.inspector; no process stopped"
+	fi
+	rm "$1/pid.inspector"
+fi
+
+# if we stopped a process ...
+if [[ "$didStop" -gt 0 ]]; then
+	# sleep shortly if we are called with arg '-clean', just
+	# to give the stopping a better chance to finish
+	if [[ $# != 0 ]] && [[ $1 = "-clean" ]]; then
+		sleep 1
+	fi
+fi
