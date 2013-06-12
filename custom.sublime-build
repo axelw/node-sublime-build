@@ -1,11 +1,10 @@
 {
 	"working_dir": "$project_path",
-	"env": {"ENTRY_FILE":"app.js"}, 
-
+	
 	"variants":[
 		{
 			"cmd": ["$packages/User/Build/stop",
-							"$packages/User/Build"],
+					"$packages/User/Build"],
 			"name": "Stop"
 		},
 		{
