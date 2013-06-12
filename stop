@@ -1,19 +1,15 @@
 #! /opt/local/bin/bash
+# first arg		: the path to Sublime Text 2's folder Packages/User/Build
 
-didStop=0
-
-# check if file pid.node exists. That may signal that node is running
 if [[ -e "$1/pid.node" ]]; then 
-	# get the node process's pid persisted in the file
-	oldPid=$(cat "$1/pid.node")
+	pid=$(cat "$1/pid.node")
 
-	# try finding one line containing the pid and the process name
-	proc=$(ps axw pid,command|grep "$oldPid"|grep -v grep|grep "node")
+	test1=$(ps axo pid,command|grep "$pid"|grep -v grep)
+	test2=$(echo $test1|grep "node")
 
-	if [[ "$proc" ]]; then
-		echo "stopping: $proc"
-		kill -s SIGTERM $oldPid
-		didStop=1
+	if [[ "$test1" = "$test2" ]]; then
+		echo "stopping $test1"
+		kill -s SIGTERM $pid
 	else
 		echo "deleting stale pid.node; no process stopped"
 	fi
@@ -21,24 +17,16 @@ if [[ -e "$1/pid.node" ]]; then
 fi
 
 if [[ -e "$1/pid.inspector" ]]; then 
-	oldPid=$(cat "$1/pid.inspector")
+	pid=$(cat "$1/pid.inspector")
 
-	proc=$(ps axo pid,command|grep "$oldPid"|grep -v grep|grep "node-inspector")
+	test1=$(ps axo pid,command|grep "$pid"|grep -v grep)
+	test2=$(echo $test1|grep "node-inspector")
 
-	if [[ "$proc"  ]]; then
-		echo "stopping: $proc"
-		kill -s SIGTERM $oldPid
-		didStop=2
+	if [[ "$test1" = "$test2" ]]; then
+		echo "stopping $test1"
+		kill -s SIGTERM $pid
 	else
 		echo "deleting stale pid.inspector; no process stopped"
 	fi
 	rm "$1/pid.inspector"
-fi
-
-if [[ "$didStop" -gt 0 ]]; then
-	# sleep shortly if we are called with '-clean', just
-	# to give the stopping a better chance to finish
-	if [[ $# != 0 ]] && [[ $1 = "-clean" ]]; then
-		sleep 1
-	fi
 fi

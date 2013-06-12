@@ -1,14 +1,14 @@
 #! /opt/local/bin/bash
+# first arg		: the path to Sublime Text 2's folder Packages/User/Build
+# second arg	: the name of the entry file
+# third arg		; the optional debug switch
 
-# first arg is supposed to be the path to Sublime Text 2's folder Packages/User/Build
-"$1/stop" -clean
+"$1/stop" "$1"
 
-# second arg is supposed to be the name of the entry file
-# third arg is the optional debug switch
-NODE_ENV=development node $3 $2 &
-pid=$!
 echo "NODE_ENV=development"
 
+NODE_ENV=development node $3 $2 &
+pid=$!
 while [[ -z "$pid" ]]; do
 	sleep 1
 done
