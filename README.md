@@ -18,7 +18,7 @@ Hotkeys are enabled via ST2's key bindings:
 ## Known caveats & issues
 
 - this build system assumes that the file called by node goes by the name of `app.js`
-- when node is started, the `run`script stores the pid in a file. That file is used by the `stop` script. This script tries to ensure that it only stops processes (by sending them SIGTERM) which are started by `run`. In case a process has a pid 5678, but another process has pid 56789, `stop` gets confused, and the node process must be ended manually in the terminal. All this is due to my limited knowledge of regex.
 - it works on my machine running MacOS 10.7.5. It may work elsewhere, but nobody knows.
+- maybe more :)
 
 
