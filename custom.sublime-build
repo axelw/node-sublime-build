@@ -11,20 +11,20 @@
 	{
 		"cmd"	:	["$packages/User/Build/run",
 					"$packages/User/Build",
-					"$project_path/app.js"],
+					"$project_path/server.js"],
 		"name"	:	"Run"
 	},
 	{
 		"cmd"	:	["$packages/User/Build/run",
 					"$packages/User/Build",
-					"$project_path/app.js",
+					"$project_path/server.js",
 					"--debug"],
 					"name": "Debug"
 	},
 	{
 		"cmd"	:	["$packages/User/Build/run",
 					"$packages/User/Build",
-					"$project_path/app.js",
+					"$project_path/server.js",
 					"--debug-brk"],
 		"name"	:	"Debug-Brk"
 	}]
