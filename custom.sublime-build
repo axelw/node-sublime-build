@@ -1,11 +1,11 @@
 {
 	"working_dir"	:	"$project_path",
-	"path"			:	"/bin:/usr/bin:/usr/local/bin",
+	"path"		:	"/bin:/usr/bin:/usr/local/bin",
 
 	"variants":[
 	{
 		"cmd"	:	["$packages/User/Build/stop",
-					"$packages/User/Build"],
+				"$packages/User/Build"],
 		"name"	:	"Stop"
 	},
 	{
