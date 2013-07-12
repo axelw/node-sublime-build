@@ -16,9 +16,7 @@ Hotkeys are enabled via ST2's key bindings:
 		{ "keys": ["super+ctrl+x"], "command": "build", "args": {"variant": "Debug-Brk"} }
 	]
 
-## Known caveats & issues
+## Known knowns
 
-- this build system assumes that the file called by node goes by the name of `app.js`
+- this build system assumes that the file called by node goes by the name of `server.js`
 - it works on my machine running MacOS 10.7.5. It may or may not work elsewhere.
-
-
