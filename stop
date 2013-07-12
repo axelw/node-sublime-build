@@ -1,13 +1,12 @@
 #! /opt/local/bin/bash
 # first arg		: the path to Sublime Text 2's folder Packages/User/Build
 
+# stop process if we think we started it
 if [[ -e "$1/pid.node" ]]; then 
 	pid=$(cat "$1/pid.node")
 
 	test1=$(ps axo pid,command|grep "$pid"|grep "node"|grep -v grep|sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-	# test2=$(echo $test1|grep "node")
 
-	# if [[ "$test1" = "$test2" ]]; then
 	if [[ "$test1" ]]; then
 		echo "stopping $test1"
 		kill -s SIGTERM $pid
@@ -21,9 +20,7 @@ if [[ -e "$1/pid.inspector" ]]; then
 	pid=$(cat "$1/pid.inspector")
 
 	test1=$(ps axo pid,command|grep "$pid"|grep "inspector"|grep -v grep|sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-	# test2=$(echo $test1|grep "node-inspector")
 
-	# if [[ "$test1" = "$test2" ]]; then
 	if [[ "$test1" ]]; then
 		echo "stopping $test1"
 		kill -s SIGTERM $pid
