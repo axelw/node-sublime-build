@@ -18,5 +18,5 @@ Hotkeys are enabled via ST2's key bindings:
 
 ## Known knowns
 
-- this build system assumes that the file called by node goes by the name of `server.js`
-- it works on my machine running MacOS 10.7.5. It may or may not work elsewhere.
+- the file called by node is assumed to be named `server.js`
+- works on my machine running MacOS 10.7.5. It may or may not work elsewhere
