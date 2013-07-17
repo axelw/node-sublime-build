@@ -8,10 +8,10 @@
 
 # creating new template bundle if necessary
 echo "!: running grunt ..."
-grunt mt --no-color
+grunt --no-color
 
 # creating one modularized JS package
-echo "!: running browserify ..."
+echo "!: running browserify with `dirname $2`/public/js/main.js" 
 cd "`dirname $2`/public/js" 
 browserify main.js -d -o bundle.js
 
