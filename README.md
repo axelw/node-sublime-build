@@ -20,3 +20,10 @@ Hotkeys are enabled via ST2's key bindings:
 
 - the file called by node is assumed to be named `server.js`
 - works on my machine running MacOS 10.7.5. It may or may not work elsewhere
+
+
+#### Sublime plugins
+
+- [Package Control](wbond.net/sublime_packages/package_control)
+- [Comments Aware Enter](github.com/Suor/CommentsAwareEnter )
+- [Markdown Preview](github.com/revolunet/sublimetext-markdown-preview.git)
