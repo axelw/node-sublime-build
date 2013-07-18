@@ -25,5 +25,5 @@ Hotkeys are enabled via ST2's key bindings:
 #### Sublime plugins
 
 - [Package Control](http://wbond.net/sublime_packages/package_control)
-- [Comments Aware Enter](github.com/Suor/CommentsAwareEnter )
-- [Markdown Preview](github.com/revolunet/sublimetext-markdown-preview.git)
+- [Comments Aware Enter](https://github.com/Suor/CommentsAwareEnter )
+- [Markdown Preview](https://github.com/revolunet/sublimetext-markdown-preview.git)
