@@ -2,12 +2,12 @@ node-sublime-build
 ==================
 ## Running node and node-inspector from Sublime Text 2
 
-The two scripts and the custom build config should to be placed in    
+The two scripts and the custom build config are placed in    
 	~/Library/Application Support/Sublime Text 2/Packages/User/Build
 
 An entry _custom_ will show up in ST2's _Tools/Build System_ menu.
 
-Hotkeys are enabled via ST2's key bindings:
+Hotkeys are enabled by manually editing ST2's key bindings:
 
 	[
 		{ "keys": ["super+ctrl+r"], "command": "build", "args": {"variant": "Run"} },
