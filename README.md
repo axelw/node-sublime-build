@@ -21,7 +21,8 @@ templates into a single file, from which each view of a SPA fetches its portion.
 
 It also calls [browserify](http://browserify.org/) to create a package of JavaScripts (no AMD right now). 
 
-So the whole thing is useful when working on a [project-template](https://github.com/axelw/project-template)
+The whole thing may easily be adapted to specific configurations, say removing grunt or browserify or giving
+the server.js another name. I use it together with my work-in-progress [project-template](https://github.com/axelw/project-template)
 
 
 ## Known knowns
