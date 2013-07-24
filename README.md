@@ -1,6 +1,6 @@
 node-sublime-build
 ==================
-## Running node and node-inspector from Sublime Text 2
+## Run, stop and restart node and node-inspector from Sublime Text 2
 
 The two scripts and the custom build config are placed in    
 	~/Library/Application Support/Sublime Text 2/Packages/User/Build
@@ -12,8 +12,8 @@ Hotkeys are enabled by manually editing ST2's key bindings:
 	[
 		{ "keys": ["super+ctrl+r"], "command": "build", "args": {"variant": "Run"} },
 		{ "keys": ["super+ctrl+u"], "command": "build", "args": {"variant": "Debug"} },
-		{ "keys": ["super+ctrl+q"], "command": "build", "args": {"variant": "Stop"} },
-		{ "keys": ["super+ctrl+x"], "command": "build", "args": {"variant": "Debug-Brk"} }
+		{ "keys": ["super+ctrl+x"], "command": "build", "args": {"variant": "Debug-Brk"} },
+		{ "keys": ["super+ctrl+q"], "command": "build", "args": {"variant": "Stop"} }	
 	]
 
 The `run` script calls a [gruntfile](http://gruntjs.com/) to package the HTML 
