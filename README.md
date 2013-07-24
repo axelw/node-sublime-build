@@ -16,7 +16,7 @@ Hotkeys are enabled by manually editing ST2's key bindings:
 		{ "keys": ["super+ctrl+x"], "command": "build", "args": {"variant": "Debug-Brk"} }
 	]
 
-The `run` script calls a [gruntfile](http://http://gruntjs.com/) to package the HTML 
+The `run` script calls a [gruntfile](http://gruntjs.com/) to package the HTML 
 templates into a single file, from which each view of a SPA fetches its portion.
 
 It also calls [browserify](http://browserify.org/) to create a package of JavaScripts (no AMD right now). 
