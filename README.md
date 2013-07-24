@@ -2,12 +2,21 @@ node-sublime-build
 ==================
 ## Run, stop and restart node and node-inspector from Sublime Text 2
 
+Great tools to do the job are [node-dev](https://github.com/fgnass/node-dev), [node-supervisor](https://github.com/isaacs/node-supervisor) or [node-nodemon](https://github.com/remy/nodemon), for example.
+They watch your files and run node when a file changed.
+
+Being old-school, I want to exercise more control about when to (re)start node and the inspector, and 
+in which debug mode. That's why I wrote two tiny scripts (besides that I didn't know about the aforementioned
+tools when I started scripting :)
+
+------------------
+
 The two scripts and the custom build config are placed in    
 	~/Library/Application Support/Sublime Text 2/Packages/User/Build
 
 An entry _custom_ will show up in ST2's _Tools/Build System_ menu.
 
-Hotkeys are enabled by manually editing ST2's key bindings:
+Hotkeys are enabled by manually editing ST2's user key bindings:
 
 	[
 		{ "keys": ["super+ctrl+r"], "command": "build", "args": {"variant": "Run"} },
@@ -27,7 +36,8 @@ the server.js another name. I use it together with my work-in-progress [project-
 
 ## Known knowns
 
-- the file called by node is assumed to be named `server.js`
+- the file called by node is assumed to be named `server.js`. This is because I want to (re)start node without having to switch 
+to a certain file in the editor. I *believe* using '$file' wouldn't help, I didn't verify that.
 - works on my machine running MacOS 10.7.5. It may or may not work elsewhere
 
 
