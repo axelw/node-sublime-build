@@ -7,13 +7,21 @@
 "$1/stop" "$1"
 
 # creating new template bundle if necessary
-echo "!: running grunt ..."
-grunt --no-color
+if [[ -e "`dirname $2`/gruntfile.js" ]]; then 
+	echo "running grunt with `dirname $2`/gruntfile.js"
+	grunt --no-color
+else
+	echo "not running grunt: `dirname $2`/gruntfile.js not available"
+fi
 
 # creating one modularized JS package
-echo "!: running browserify with `dirname $2`/public/js/main.js" 
-cd "`dirname $2`/public/js" 
-browserify main.js -d -o bundle.js
+if [[ -e "`dirname $2`/public/js/main.js" ]]; then 
+	echo "running browserify with `dirname $2`/public/js/main.js" 
+	cd "`dirname $2`/public/js" 
+	browserify main.js -d -o bundle.js
+else
+	echo "not running browserify: `dirname $2`/public/js/main.js not available"
+fi
 
 # starting the node server
 NODE_ENV=development node $3 $2 &
@@ -22,7 +30,7 @@ while [[ -z "$pid" ]]; do
 	sleep 1
 done
 echo $pid > "$1/pid.node"
-echo "!: starting node $3 ($pid)"
+echo "running node $3 ($pid)"
 echo "NODE_ENV=development"
 
 # starting the node inspector
@@ -33,5 +41,5 @@ if [[ $3 = "--debug" ]] || [[ $3 = "--debug-brk" ]]; then
 		sleep 1
 	done
 	echo $pid > "$1/pid.inspector"
-	echo "!: starting node-inspector ($pid)"
+	echo "running node-inspector ($pid)"
 fi
