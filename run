@@ -23,7 +23,7 @@ else
 	echo "not running browserify: `dirname $2`/public/js/main.js not available"
 fi
 
-# starting the node server
+# starting node webserver
 NODE_ENV=development node $3 $2 &
 pid=$!
 while [[ -z "$pid" ]]; do
@@ -33,13 +33,25 @@ echo $pid > "$1/pid.node"
 echo "running node $3 ($pid)"
 echo "NODE_ENV=development"
 
-# starting the node inspector
+# starting node-inspector
 if [[ $3 = "--debug" ]] || [[ $3 = "--debug-brk" ]]; then
 	node-inspector &
+	# The following works, but cannot be controlled the old way. Try figure it out later. 
+	# See also: http://strongloop.com/strongblog/whats-new-in-the-node-inspector-v0-7-debugger/
+	#node-debug $2 &
 	pid=$!
 	while [[ -z "$pid" ]]; do
 		sleep 1
 	done
 	echo $pid > "$1/pid.inspector"
 	echo "running node-inspector ($pid)"
+	
+	# Switch to node-inspector. 'open' is OSX only, I think. Serves me as well as the above node-debug thing
+	# open -a "/Applications/Google Chrome.app" 'http://127.0.0.1:8080/debug?port=5858'
+	open "http://127.0.0.1:8080/debug?port=5858"
+	# give chrome some time before running ff
+	sleep 1
 fi
+
+# omg, hard coded ports and the like ...
+open -a "/Applications/Firefox_24.6.0.ESR.app" 'http://127.0.0.1:1337'
