@@ -1,6 +1,6 @@
 {
-	"working_dir"	:	"$project_path",
-	"path"			:	"/bin:/usr/bin:/usr/local/bin",
+	"working_dir"	:	"$project_path/server",
+	"path"			:	"$HOME/.local/bin:/bin:/usr/bin:/usr/local/bin",
 
 	"variants":[
 	{
@@ -11,20 +11,20 @@
 	{
 		"cmd"	:	["$packages/User/Build/run",
 					"$packages/User/Build",
-					"$project_path/server.js"],
+					"server.js"],
 		"name"	:	"Run"
 	},
 	{
 		"cmd"	:	["$packages/User/Build/run",
 					"$packages/User/Build",
-					"$project_path/server.js",
+					"server.js",
 					"--debug"],
 					"name": "Debug"
 	},
 	{
 		"cmd"	:	["$packages/User/Build/run",
 					"$packages/User/Build",
-					"$project_path/server.js",
+					"server.js",
 					"--debug-brk"],
 		"name"	:	"Debug-Brk"
 	}]
