@@ -1,4 +1,4 @@
-#! /opt/local/bin/bash
+#! /bin/bash
 # first arg	: the path to Sublime Text 2's folder Packages/User/Build
 # second arg	: the name of the entry file
 # third arg	; the optional debug switch

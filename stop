@@ -1,4 +1,4 @@
-#! /opt/local/bin/bash
+#! /bin/bash
 # first arg		: the path to Sublime Text 2's folder Packages/User/Build
 
 # stop process if we think we started it
