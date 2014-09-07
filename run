@@ -7,7 +7,7 @@
 "$1/stop" "$1"
 
 # creating new template bundle if necessary
-if [[ -e "`dirname $2`/gruntfile.js" ]]; then 
+if [[ -e "`dirname $2`/gruntfile.js" ]]; then
 	echo "running grunt with `dirname $2`/gruntfile.js"
 	grunt --no-color
 else
@@ -15,9 +15,9 @@ else
 fi
 
 # creating one modularized JS package
-if [[ -e "`dirname $2`/public/js/main.js" ]]; then 
-	echo "running browserify with `dirname $2`/public/js/main.js" 
-	cd "`dirname $2`/public/js" 
+if [[ -e "`dirname $2`/public/js/main.js" ]]; then
+	echo "running browserify with `dirname $2`/public/js/main.js"
+	cd "`dirname $2`/public/js"
 	browserify main.js -d -o bundle.js
 else
 	echo "not running browserify: `dirname $2`/public/js/main.js not available"
@@ -36,7 +36,7 @@ echo "NODE_ENV=development"
 # starting node-inspector
 if [[ $3 = "--debug" ]] || [[ $3 = "--debug-brk" ]]; then
 	node-inspector &
-	# The following works, but cannot be controlled the old way. Try figure it out later. 
+	# The following works, but cannot be controlled the old way. Try figure it out later.
 	# See also: http://strongloop.com/strongblog/whats-new-in-the-node-inspector-v0-7-debugger/
 	#node-debug $2 &
 	pid=$!
@@ -45,7 +45,7 @@ if [[ $3 = "--debug" ]] || [[ $3 = "--debug-brk" ]]; then
 	done
 	echo $pid > "$1/pid.inspector"
 	echo "running node-inspector ($pid)"
-	
+
 	# Switch to node-inspector. 'open' is OSX only, I think. Serves me as well as the above node-debug thing
 	# open -a "/Applications/Google Chrome.app" 'http://127.0.0.1:8080/debug?port=5858'
 	open "http://127.0.0.1:8080/debug?port=5858"
@@ -53,5 +53,5 @@ if [[ $3 = "--debug" ]] || [[ $3 = "--debug-brk" ]]; then
 	sleep 1
 fi
 
-# omg, hard coded ports and the like ...
-open -a "/Applications/Firefox_24.6.0.ESR.app" 'http://127.0.0.1:1337'
+# to be improved: hard coded ports and the like
+open -a "/Applications/Firefox_24.6.0.ESR.app" 'http://127.0.0.1:3000'
