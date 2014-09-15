@@ -48,5 +48,10 @@ fi
 
 sleep 1
 
-# to be improved: hard coded ports and the like
-open -a "/Applications/Firefox_24.6.0.ESR.app" 'http://127.0.0.1:3000'
+# to be improved: get rid of multiple cat calls
+browser=$(cat ./package.json | jsawk 'return this.config.browser')
+host=$(cat ./package.json | jsawk 'return this.config.host')
+port=$(cat ./package.json | jsawk 'return this.config.port')
+
+# find a way to make it possible not to specify a browser at all in package.json, so that the default browser is used
+open -a "$browser" 'http://'"$host"':'"$port"
